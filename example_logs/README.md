@@ -4,7 +4,7 @@ This directory contains realistic security log files that demonstrate various at
 
 ## Log Files Overview
 
-### 1. `impossible_travel.log`
+### 1. `impossible_travel..log.example`
 **Scenario:** User account compromised with impossible travel pattern
 - User logs in from Bucharest, Romania at 08:00 UTC
 - Same user logs in from Tokyo, Japan at 09:30 UTC (1.5 hours later)
@@ -12,7 +12,7 @@ This directory contains realistic security log files that demonstrate various at
 - Post-compromise activities: email access, bulk downloads, email forwarding rules
 - **Council Actions:** TravelDetective checks impossible travel, AlertTriager assesses anomaly, ThreatAnalyst evaluates risk
 
-### 2. `malware_detection.log`
+### 2. `malware_detection..log.example`
 **Scenario:** Ransomware (LockBit 3.0) infection via email attachment
 - Phishing email with double extension (.pdf.exe)
 - Malware execution with shadow copy deletion
@@ -21,7 +21,7 @@ This directory contains realistic security log files that demonstrate various at
 - Ransom note creation
 - **Council Actions:** ThreatIntelSpecialist checks file hash & C2 IP, AlertTriager analyzes malware behavior, ThreatAnalyst assesses severity
 
-### 3. `brute_force_attack.log`
+### 3. `brute_force_attack..log.example`
 **Scenario:** Successful credential stuffing attack against domain admin
 - 147 failed login attempts from 5 Chinese IPs
 - Successful login from 203.0.113.50 (China)
@@ -29,7 +29,7 @@ This directory contains realistic security log files that demonstrate various at
 - Automated attack pattern (Python-requests user agent)
 - **Council Actions:** AlertTriager identifies brute force pattern, ThreatIntelSpecialist checks source IPs, ThreatAnalyst evaluates post-compromise impact
 
-### 4. `c2_communication.log`
+### 4. `c2_communication..log.example`
 **Scenario:** Cobalt Strike C2 beaconing detected
 - Regular beaconing pattern (60-second intervals) to 185.220.101.50
 - IDS signatures: "ET MALWARE Cobalt Strike Beacon"
@@ -37,7 +37,7 @@ This directory contains realistic security log files that demonstrate various at
 - Executable download (50 MB payload)
 - **Council Actions:** ThreatIntelSpecialist checks C2 IP reputation, AlertTriager analyzes network anomaly, ThreatAnalyst assesses APT indicators
 
-### 5. `data_exfiltration.log`
+### 5. `data_exfiltration..log.example`
 **Scenario:** Insider threat - contractor exfiltrates 250GB of sensitive data
 - Off-hours activity (02:00 AM)
 - Database exports: 1.5M customer records, 250K financial transactions
@@ -45,7 +45,7 @@ This directory contains realistic security log files that demonstrate various at
 - PII exposure: 1.5M records, 45K credit cards, 120K SSNs
 - **Council Actions:** AlertTriager flags off-hours anomaly, ThreatIntelSpecialist checks destination domain, ThreatAnalyst evaluates regulatory impact
 
-### 6. `privilege_escalation.log`
+### 6. `privilege_escalation..log.example`
 **Scenario:** Zero-day exploit (CVE-2024-38063) for privilege escalation
 - Standard user opens malicious document
 - Obfuscated PowerShell command exploits TCP/IP vulnerability
@@ -53,7 +53,7 @@ This directory contains realistic security log files that demonstrate various at
 - Post-exploitation: disabled Windows Defender, credential dumping with Mimikatz, SAM database access
 - **Council Actions:** AlertTriager detects exploit indicators, ThreatAnalyst assesses privilege escalation risk, IncidentCommander coordinates response
 
-### 7. `suspicious_process.log`
+### 7. `suspicious_process..log.example`
 **Scenario:** Office macro malware with process masquerading
 - Malicious Word document with auto-executing macro
 - Downloads fake svchost.exe to user temp directory
@@ -63,7 +63,7 @@ This directory contains realistic security log files that demonstrate various at
 - Document exfiltration (50 MB)
 - **Council Actions:** AlertTriager identifies suspicious process behavior, ThreatIntelSpecialist checks domain reputation, ThreatAnalyst evaluates overall threat
 
-### 8. `comprehensive_apt_attack.log`
+### 8. `comprehensive_apt_attack..log.example`
 **Scenario:** Full APT kill chain - all attack stages in one incident
 - **Stage 1:** Spear phishing email
 - **Stage 2:** Credential harvesting (phishing site)

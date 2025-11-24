@@ -1,0 +1,13 @@
+2024-11-23T08:00:15Z [AUTH] INFO user=john.doe@company.com action=login status=success ip=93.115.92.100 country=RO city=Bucharest user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64)" session_id=sess_abc123
+2024-11-23T08:00:17Z [AUTH] INFO user=john.doe@company.com session_established session_id=sess_abc123 auth_method=SAML mfa_verified=true
+2024-11-23T08:02:34Z [APP] INFO user=john.doe@company.com action=access_email mailbox_accessed=inbox messages_viewed=15
+2024-11-23T08:05:12Z [APP] INFO user=john.doe@company.com action=download_attachments count=50 total_size_mb=125
+2024-11-23T08:08:45Z [APP] WARN user=john.doe@company.com action=modify_email_rules rule_type=forwarding destination=external@suspicious.com
+2024-11-23T08:12:03Z [VPN] INFO user=john.doe@company.com action=vpn_connect endpoint=vpn-gateway-eu gateway_ip=93.115.92.100
+2024-11-23T09:30:42Z [AUTH] CRITICAL user=john.doe@company.com action=login status=success ip=103.79.141.100 country=JP city=Tokyo user_agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)" session_id=sess_xyz789
+2024-11-23T09:30:42Z [ANOMALY] CRITICAL alert_type=impossible_travel user=john.doe@company.com first_location="Bucharest,RO" second_location="Tokyo,JP" first_time=2024-11-23T08:00:15Z second_time=2024-11-23T09:30:42Z time_diff_hours=1.5 distance_km=8847 required_speed_kmh=5898 risk_score=95
+2024-11-23T09:30:45Z [AUTH] INFO user=john.doe@company.com session_established session_id=sess_xyz789 auth_method=SAML mfa_verified=false mfa_bypass_reason=remembered_device
+2024-11-23T09:31:20Z [APP] INFO user=john.doe@company.com action=access_sharepoint site=finance_reports documents_accessed=25
+2024-11-23T09:33:45Z [APP] WARN user=john.doe@company.com action=bulk_download location=sharepoint site=finance_reports files_downloaded=120 total_size_gb=5.2
+2024-11-23T09:35:12Z [DATABASE] WARN user=john.doe@company.com action=database_query database=customer_prod_db query_type=SELECT rows_returned=150000 export_initiated=true
+2024-11-23T09:38:33Z [ANOMALY] HIGH alert_type=data_access_anomaly user=john.doe@company.com baseline_daily_downloads_mb=50 current_download_gb=5.2 anomaly_factor=106x

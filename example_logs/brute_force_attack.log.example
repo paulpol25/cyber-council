@@ -1,0 +1,21 @@
+2024-11-23T03:00:12Z [AUTH] WARN user=admin@company.com action=login_attempt status=failed ip=203.0.113.45 country=CN reason=invalid_password attempt=1
+2024-11-23T03:00:15Z [AUTH] WARN user=admin@company.com action=login_attempt status=failed ip=203.0.113.45 country=CN reason=invalid_password attempt=2
+2024-11-23T03:00:18Z [AUTH] WARN user=admin@company.com action=login_attempt status=failed ip=203.0.113.46 country=CN reason=invalid_password attempt=3
+2024-11-23T03:01:22Z [AUTH] WARN user=admin@company.com action=login_attempt status=failed ip=203.0.113.46 country=CN reason=invalid_password attempt=4
+2024-11-23T03:01:25Z [AUTH] WARN user=admin@company.com action=login_attempt status=failed ip=203.0.113.47 country=CN reason=invalid_password attempt=5
+2024-11-23T03:02:34Z [AUTH] WARN user=admin@company.com action=login_attempt status=failed ip=203.0.113.47 country=CN reason=invalid_password attempt=6
+2024-11-23T03:02:37Z [AUTH] WARN user=admin@company.com action=login_attempt status=failed ip=203.0.113.48 country=CN reason=invalid_password attempt=7
+2024-11-23T03:03:12Z [AUTH] WARN user=admin@company.com action=login_attempt status=failed ip=203.0.113.48 country=CN reason=invalid_password attempt=8
+2024-11-23T03:03:15Z [AUTH] WARN user=admin@company.com action=login_attempt status=failed ip=203.0.113.49 country=CN reason=invalid_password attempt=9
+2024-11-23T03:04:45Z [AUTH] WARN user=admin@company.com action=login_attempt status=failed ip=203.0.113.49 country=CN reason=invalid_password attempt=10
+2024-11-23T03:05:23Z [ANOMALY] HIGH alert_type=brute_force_detected user=admin@company.com failed_attempts=147 time_window_minutes=15 unique_ips=5 pattern=credential_stuffing user_agent="Python-requests/2.28.1"
+2024-11-23T03:30:12Z [AUTH] CRITICAL user=admin@company.com action=login status=success ip=203.0.113.50 country=CN city=Shanghai user_agent="Python-requests/2.28.1" session_id=sess_compromised_123 auth_method=NTLM
+2024-11-23T03:30:15Z [ANOMALY] CRITICAL alert_type=successful_login_after_brute_force user=admin@company.com failed_attempts=147 successful_ip=203.0.113.50 country=CN privilege_level=domain_admin risk_score=98
+2024-11-23T03:31:45Z [AD] CRITICAL host=domain-controller-01 user=admin@company.com action=user_created new_user=backup_admin privilege_level=domain_admin created_by=admin@company.com
+2024-11-23T03:32:12Z [AD] CRITICAL host=domain-controller-01 user=admin@company.com action=group_membership_added target_user=backup_admin group="Domain Admins" modified_by=admin@company.com
+2024-11-23T03:33:20Z [AD] WARN host=domain-controller-01 user=admin@company.com action=group_policy_modified gpo_name="Default Domain Policy" changes=[disable_windows_defender,weaken_password_policy] modified_by=admin@company.com
+2024-11-23T03:35:45Z [APP] CRITICAL user=admin@company.com action=password_vault_access vault=enterprise_password_manager entries_accessed=342 export_initiated=true export_format=csv
+2024-11-23T03:38:12Z [AD] CRITICAL host=domain-controller-01 user=admin@company.com action=ad_database_export database=ntds.dit export_method=ntdsutil export_size_mb=4500 destination="C:\Windows\Temp\backup.dit"
+2024-11-23T03:40:33Z [FILE] CRITICAL host=domain-controller-01 user=admin@company.com action=file_access file="C:\Windows\NTDS\ntds.dit" operation=read bytes_read=4718592000
+2024-11-23T03:42:15Z [NETWORK] WARN host=domain-controller-01 event=large_outbound_transfer user=admin@company.com destination_ip=203.0.113.50 destination_port=443 bytes_transferred=4718592000 duration_seconds=180
+2024-11-23T03:45:00Z [INCIDENT] CRITICAL incident_id=INC-2024-AUTH-001 title="Successful Brute Force - Domain Admin Compromise" affected_user=admin@company.com attack_source=CN indicators=[brute_force,credential_stuffing,privilege_abuse,data_exfiltration] status=active severity=critical
