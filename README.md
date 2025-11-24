@@ -13,6 +13,7 @@ The Cyber Council is a **multi-agent AI system** where specialized security expe
 - **Incident Commander** - Orchestrates the team
 - **Travel Detective** - Detects impossible travel patterns
 - **Threat Intel Specialist** - Queries VirusTotal and AbuseIPDB
+- **IoC Extractor Specialist** - Extracts Indicators of Compromise 
 - **Alert Triager** - Analyzes security alerts
 - **Threat Analyst** - Provides overall threat assessment
 
@@ -31,6 +32,7 @@ llm-council/
 │   ├── orchestrator.py                # Council coordinator
 │   ├── agents.py                      # Specialized security agents
 │   ├── mcp_adapter.py                 # MCP tool adapter for AG2
+|   ├── mcp_toolkit.py                 # Helper function to transform the MCP tools into AG2 compatible tools. 
 │   ├── llm_config.py                  # Multi-LLM configuration
 │   ├── cli.py                         # Command-line interface
 │   ├── quickstart.py                  # Example scenarios
@@ -38,21 +40,28 @@ llm-council/
 │
 ├── mcp/                               # 🔌 Model Context Protocol Server
 │   ├── server.py                      # Main MCP server
+│   ├── test_server.py                 # Script to test if the functions run correctly on the MCP server
+│   ├── verify_server.py               # Script to test if all the imports are loaded and explains how to use it
+│   ├── setup.py                       # Script for automatic setup
+│   ├── claude_config.example.json     # Example of configuration file for Claude Desktop
 │   ├── functions/                     # Security analysis tools
 │   │   ├── impossible_travel.py       # ML-powered travel detection
 │   │   ├── alert_analyzer.py          # Alert analysis engine
 │   │   ├── virustotal_check.py        # VirusTotal integration
 │   │   └── abuseipdb_check.py         # AbuseIPDB integration
-│   └── README.md                      # MCP server documentation
+|   |   └── ioc_extractor.py           # Function to Extract Indicators of compromise
+│  
 │
 ├── models/                            # 🧠 Machine Learning Models
 │   └── impossible-travel-detector/    
 │       ├── src/                       # Model training and prediction
 │       ├── configs/                   # Model configuration
 │       ├── data/                      # Training data
-│       └── README.md                  # Model documentation
+│
 │
 ├── .env.example                       # Environment configuration template
+├── test_council.py                    # Script to test if the council is running correctly
+├── setup.py                           # Script to automatically install needed requirements for the application (use it after you activate the Virtual Environment)
 └── README.md                          # This file
 ```
 
@@ -99,6 +108,8 @@ python council/cli.py check-hash 275a021bbfb6489e54d471899f7db9d1663fc695ec2fe2a
 
 ### 3. Train the ML Model (Optional)
 
+**!!Atention!!** This is not needed by the cyber council directly, since there is already a model trained in the models folder. If you want to train the model on new data, you should retrain the model.
+
 For improved impossible travel detection:
 
 ```powershell
@@ -108,6 +119,8 @@ python src\train.py --config configs\config.yaml
 ```
 
 ### 4. Setup MCP Server (Optional)
+
+**!!Atention!!** This is not needed by the cyber council directly, but if you want to integrate the functions with other LLMs directly via an MCP server, you could run the MCP server.
 
 For direct LLM integration (Claude Desktop, etc.):
 
@@ -142,14 +155,6 @@ Analyzes security alerts and provides:
 - Indicators of Compromise (IOCs)
 - Recommended actions
 - Confidence levels
-
-**Supported Alert Types:**
-- Authentication anomalies
-- Malware detections
-- Network intrusions
-- Data exfiltration
-- Privilege escalation
-- Suspicious processes
 
 ### Threat Level Assessment
 
@@ -230,9 +235,9 @@ Use MCP tools with Claude Desktop or other MCP clients for natural language secu
     ┌───┴────────────────────────────────────────────────┐
     │                                                     │
     ▼                  ▼                  ▼              ▼
-┌──────────┐    ┌──────────┐    ┌──────────┐    ┌──────────┐
+┌──────────┐    ┌──────────┐    ┌──────────┐    ┌──────────┐   
 │  Travel  │    │  Threat  │    │  Alert   │    │  Threat  │
-│Detective │    │Intel Spec│    │ Triager  │    │ Analyst  │
+│Detective │    │Intel Spec│    │ Triager  │    │ Analyst  │ 
 └────┬─────┘    └────┬─────┘    └────┬─────┘    └────┬─────┘
      │               │               │               │
      │ Uses MCP      │ Uses MCP      │ Uses MCP      │ Uses MCP
@@ -260,7 +265,7 @@ Use MCP tools with Claude Desktop or other MCP clients for natural language secu
 ### LLM Integration
 
 Supports multiple LLM providers:
-- **OpenAI GPT-4** - Best performance (recommended)
+- **OpenAI** - Best performance (recommended)
 - **Google Gemini** - Good alternative
 - **Ollama** - Local LLMs for privacy (llama2, mistral, etc.)
 
@@ -301,27 +306,16 @@ python council/quickstart.py
 
 ### Test Individual Components
 
-**MCP Tools:**
-```powershell
-cd mcp
-python examples.py
-```
-
 **ML Model:**
 ```powershell
 cd models\impossible-travel-detector
 python src\predict.py --username user001 --country "United States" --prev_country Japan --time_diff_hours 2
 ```
 
-## 📚 Documentation
-
-- **[MCP Server Documentation](mcp/README.md)** - Detailed MCP server guide
-- **[Quick Start Guide](mcp/QUICKSTART.md)** - 5-minute setup guide
-- **[Model Documentation](models/impossible-travel-detector/README.md)** - ML model details
-
 ## 🔐 Security Considerations
 
-- All processing is done locally - no external API calls
+- When using a local LLM all processing is done locally - no external API calls
+- When using OpenAI or Gemini be sure to check if your data will remain private or not
 - No sensitive data is transmitted outside your environment
 - MCP server runs as a local process only
 - Ensure proper file permissions on config files
@@ -350,7 +344,7 @@ Contributions are welcome! Please:
 
 ## 📄 License
 
-MIT License - See LICENSE file for details
+MIT License
 
 ## 🙏 Acknowledgments
 
@@ -362,8 +356,6 @@ MIT License - See LICENSE file for details
 
 For questions or issues:
 - Open an issue on GitHub
-- Check the documentation in each component's README
-- Review the examples for usage patterns
 
 ---
 
