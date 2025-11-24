@@ -13,6 +13,7 @@ The Cyber Council is a **multi-agent AI system** where specialized security expe
 - **Incident Commander** - Orchestrates the team
 - **Travel Detective** - Detects impossible travel patterns
 - **Threat Intel Specialist** - Queries VirusTotal and AbuseIPDB
+- **IoC Extractor Specialist** - Extracts Indicators of Compromise 
 - **Alert Triager** - Analyzes security alerts
 - **Threat Analyst** - Provides overall threat assessment
 
@@ -301,27 +302,16 @@ python council/quickstart.py
 
 ### Test Individual Components
 
-**MCP Tools:**
-```powershell
-cd mcp
-python examples.py
-```
-
 **ML Model:**
 ```powershell
 cd models\impossible-travel-detector
 python src\predict.py --username user001 --country "United States" --prev_country Japan --time_diff_hours 2
 ```
 
-## 📚 Documentation
-
-- **[MCP Server Documentation](mcp/README.md)** - Detailed MCP server guide
-- **[Quick Start Guide](mcp/QUICKSTART.md)** - 5-minute setup guide
-- **[Model Documentation](models/impossible-travel-detector/README.md)** - ML model details
-
 ## 🔐 Security Considerations
 
-- All processing is done locally - no external API calls
+- When using a local LLM all processing is done locally - no external API calls
+- When using OpenAI or Gemini be sure to check if your data will remain private or not
 - No sensitive data is transmitted outside your environment
 - MCP server runs as a local process only
 - Ensure proper file permissions on config files
@@ -362,8 +352,6 @@ MIT License - See LICENSE file for details
 
 For questions or issues:
 - Open an issue on GitHub
-- Check the documentation in each component's README
-- Review the examples for usage patterns
 
 ---
 
