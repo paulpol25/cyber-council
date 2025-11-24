@@ -1,0 +1,1135 @@
+{
+  "test_cases": {
+    "impossible_travel": {
+      "alert_id": "ALT-2024-IT-001",
+      "timestamp": "2024-11-23T14:30:00Z",
+      "severity": "high",
+      "alert_type": "impossible_travel",
+      "source": "Authentication Monitor",
+      "user": "john.doe@company.com",
+      "first_login": {
+        "timestamp": "2024-11-23T08:00:00Z",
+        "ip_address": "93.115.92.100",
+        "country": "RO",
+        "city": "Bucharest",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+      },
+      "second_login": {
+        "timestamp": "2024-11-23T09:30:00Z",
+        "ip_address": "103.79.141.100",
+        "country": "JP",
+        "city": "Tokyo",
+        "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)"
+      },
+      "calculated_distance_km": 8847,
+      "time_difference_hours": 1.5,
+      "required_speed_kmh": 5898,
+      "max_commercial_flight_speed_kmh": 900,
+      "risk_score": 95,
+      "actions_taken": [
+        "Accessed email",
+        "Downloaded 50 attachments",
+        "Modified email forwarding rules",
+        "Accessed VPN portal"
+      ]
+    },
+    "malware_detection": {
+      "alert_id": "ALT-2024-MAL-001",
+      "timestamp": "2024-11-23T15:45:00Z",
+      "severity": "critical",
+      "alert_type": "malware_detection",
+      "source": "Endpoint Detection and Response",
+      "host": {
+        "hostname": "DESKTOP-FIN-05",
+        "ip_address": "10.0.50.123",
+        "os": "Windows 10 Pro",
+        "user": "alice.smith@company.com"
+      },
+      "file": {
+        "name": "invoice_Q4_2024.pdf.exe",
+        "path": "C:\\Users\\alice.smith\\Downloads\\",
+        "size_bytes": 2457600,
+        "hash_md5": "44d88612fea8a8f36de82e1278abb02f",
+        "hash_sha256": "275a021bbfb6489e54d471899f7db9d1663fc695ec2fe2a2c4538aabf651fd0f",
+        "created": "2024-11-23T15:40:00Z",
+        "executed": "2024-11-23T15:42:00Z"
+      },
+      "behavior": {
+        "process_name": "invoice_Q4_2024.pdf.exe",
+        "parent_process": "explorer.exe",
+        "child_processes": ["cmd.exe", "powershell.exe", "vssadmin.exe"],
+        "network_connections": [
+          {
+            "destination_ip": "45.142.212.100",
+            "destination_port": 443,
+            "protocol": "HTTPS",
+            "bytes_sent": 1024,
+            "bytes_received": 524288
+          }
+        ],
+        "file_modifications": [
+          "Encrypted 1247 files",
+          "Created ransom note: README_DECRYPT.txt",
+          "Modified file extensions to .locked"
+        ],
+        "registry_modifications": [
+          "HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\Updater"
+        ]
+      },
+      "indicators": {
+        "ransomware_note": true,
+        "file_encryption": true,
+        "shadow_copy_deletion": true,
+        "persistence_mechanism": true
+      }
+    },
+    "authentication_anomaly": {
+      "alert_id": "ALT-2024-AUTH-001",
+      "timestamp": "2024-11-23T03:15:00Z",
+      "severity": "high",
+      "alert_type": "authentication_anomaly",
+      "source": "Active Directory",
+      "user": "admin@company.com",
+      "failed_attempts": {
+        "count": 147,
+        "time_window_minutes": 15,
+        "source_ips": [
+          "203.0.113.45",
+          "203.0.113.46",
+          "203.0.113.47",
+          "203.0.113.48",
+          "203.0.113.49"
+        ],
+        "countries": ["CN", "CN", "CN", "CN", "CN"],
+        "unique_user_agents": 1
+      },
+      "successful_login": {
+        "timestamp": "2024-11-23T03:30:00Z",
+        "ip_address": "203.0.113.50",
+        "country": "CN",
+        "city": "Shanghai",
+        "user_agent": "Python-requests/2.28.1"
+      },
+      "post_auth_activity": {
+        "privilege_level": "domain_admin",
+        "actions": [
+          "Created new user account: backup_admin",
+          "Added to Domain Admins group",
+          "Modified Group Policy",
+          "Accessed password vault",
+          "Exported Active Directory database"
+        ],
+        "accessed_systems": [
+          "domain-controller-01",
+          "exchange-server",
+          "file-server-01"
+        ]
+      },
+      "indicators": {
+        "brute_force": true,
+        "credential_stuffing": true,
+        "automated_attack": true,
+        "privilege_abuse": true
+      }
+    },
+    "network_intrusion": {
+      "alert_id": "ALT-2024-NET-001",
+      "timestamp": "2024-11-23T12:20:00Z",
+      "severity": "critical",
+      "alert_type": "network_intrusion",
+      "source": "Intrusion Detection System",
+      "source_host": {
+        "hostname": "web-app-01",
+        "ip_address": "10.0.10.50",
+        "role": "web_server"
+      },
+      "destination": {
+        "ip_address": "185.220.101.50",
+        "domain": "malicious-c2-server.com",
+        "country": "RU",
+        "asn": "AS12345",
+        "organization": "Bulletproof Hosting Ltd"
+      },
+      "connection_details": {
+        "protocol": "HTTPS",
+        "destination_port": 443,
+        "duration_seconds": 3600,
+        "bytes_sent": 1048576,
+        "bytes_received": 52428800,
+        "packets_sent": 1024,
+        "packets_received": 51200,
+        "connection_pattern": "beaconing"
+      },
+      "detected_signatures": [
+        "ET MALWARE Cobalt Strike Beacon",
+        "ET ATTACK_RESPONSE Command and Control Traffic",
+        "ET INFO Executable Download"
+      ],
+      "payload_analysis": {
+        "encrypted": true,
+        "encryption_type": "TLS 1.3",
+        "certificate_valid": false,
+        "self_signed": true
+      }
+    },
+    "data_exfiltration": {
+      "alert_id": "ALT-2024-EXFIL-001",
+      "timestamp": "2024-11-23T02:45:00Z",
+      "severity": "critical",
+      "alert_type": "data_exfiltration",
+      "source": "Data Loss Prevention",
+      "user": "contractor.bob@company.com",
+      "source_host": {
+        "hostname": "database-server-01",
+        "ip_address": "10.0.20.100",
+        "role": "database_server",
+        "database": "customer_prod_db"
+      },
+      "destination": {
+        "ip_address": "192.0.2.200",
+        "domain": "suspicious-cloud-storage.xyz",
+        "service": "file_hosting",
+        "country": "BG"
+      },
+      "transfer_details": {
+        "start_time": "2024-11-23T02:00:00Z",
+        "end_time": "2024-11-23T02:45:00Z",
+        "total_size_gb": 250,
+        "file_count": 15234,
+        "transfer_rate_mbps": 150
+      },
+      "file_types": [
+        {"type": "sql", "count": 5, "size_gb": 120},
+        {"type": "xlsx", "count": 3421, "size_gb": 80},
+        {"type": "pdf", "count": 8932, "size_gb": 35},
+        {"type": "docx", "count": 2876, "size_gb": 15}
+      ],
+      "sensitive_data_detected": {
+        "pii_records": 1500000,
+        "credit_card_numbers": 45000,
+        "ssn_count": 120000,
+        "medical_records": 80000,
+        "financial_records": 250000
+      },
+      "indicators": {
+        "off_hours_activity": true,
+        "unusual_volume": true,
+        "external_destination": true,
+        "contractor_account": true,
+        "no_business_justification": true
+      }
+    },
+    "privilege_escalation": {
+      "alert_id": "ALT-2024-PRIV-001",
+      "timestamp": "2024-11-23T11:30:00Z",
+      "severity": "high",
+      "alert_type": "privilege_escalation",
+      "source": "Security Event Monitor",
+      "user": "standard.user@company.com",
+      "host": {
+        "hostname": "LAPTOP-DEV-12",
+        "ip_address": "10.0.30.75",
+        "os": "Windows 11 Enterprise"
+      },
+      "escalation_details": {
+        "original_privileges": "standard_user",
+        "new_privileges": "local_admin",
+        "method": "exploit",
+        "exploit_cve": "CVE-2024-38063",
+        "vulnerability": "Windows TCP/IP Remote Code Execution"
+      },
+      "suspicious_process": {
+        "name": "powershell.exe",
+        "path": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\",
+        "command_line": "powershell.exe -NoProfile -ExecutionPolicy Bypass -EncodedCommand JABzAD0ATgBlAHcALQBPAGIAagBlAGMAdAAgAEkATwAuAE0AZQBtAG8AcgB5AFMAdAByAGUAYQBtACgALABbAEMAbwBuAHYAZQByAHQAXQA6ADoARgByAG8AbQBCAGEAcwBlADYANABTAHQAcgBpAG4AZwAoACIASAA0AHMASQBBAEEAQQBBAEEAQQBBAEEAQQBKAHoATAB5ADkAMwBhAEcAVgB5AGkAZQBIAEIAcwBiAGkAUQBBAC4ALgAuACIAKQApADsASQBFAFgAIAAoAE4AZQB3AC0ATwBiAGoAZQBjAHQAIABJAE8ALgBTAHQAcgBlAGEAbQBSAGUAYQBkAGUAcgAoACQAcwApACkALgBSAGUAYQBkAFQAbwBFAG4AZAAoACkA",
+        "parent_process": "explorer.exe",
+        "child_processes": ["cmd.exe", "net.exe", "whoami.exe"]
+      },
+      "post_escalation_actions": [
+        "Disabled Windows Defender",
+        "Modified firewall rules",
+        "Created scheduled task for persistence",
+        "Dumped LSASS memory",
+        "Accessed SAM database",
+        "Modified registry security settings"
+      ],
+      "indicators": {
+        "exploit_detected": true,
+        "obfuscated_command": true,
+        "defense_evasion": true,
+        "credential_access": true
+      }
+    },
+    "suspicious_process": {
+      "alert_id": "ALT-2024-PROC-001",
+      "timestamp": "2024-11-23T16:10:00Z",
+      "severity": "medium",
+      "alert_type": "suspicious_process",
+      "source": "Endpoint Detection and Response",
+      "host": {
+        "hostname": "WORKSTATION-HR-08",
+        "ip_address": "10.0.40.88",
+        "os": "Windows 10 Enterprise",
+        "user": "hr.manager@company.com"
+      },
+      "process": {
+        "name": "svchost.exe",
+        "path": "C:\\Users\\hr.manager\\AppData\\Local\\Temp\\",
+        "pid": 4532,
+        "hash_sha256": "abc123def456789ghi012jkl345mno678pqr901stu234vwx567yza890bcd",
+        "signed": false,
+        "parent_process": "winword.exe",
+        "command_line": "C:\\Users\\hr.manager\\AppData\\Local\\Temp\\svchost.exe -k netsvcs"
+      },
+      "behavior": {
+        "network_connections": [
+          {
+            "destination_ip": "198.51.100.50",
+            "destination_domain": "update-microsoft-services.com",
+            "destination_port": 8080,
+            "protocol": "HTTP"
+          }
+        ],
+        "file_operations": [
+          "Created: C:\\Users\\hr.manager\\AppData\\Roaming\\update.dat",
+          "Modified: HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run",
+          "Read: C:\\Users\\hr.manager\\Documents\\*.*"
+        ],
+        "injected_into": ["explorer.exe"],
+        "persistence_mechanism": "Registry Run key"
+      },
+      "indicators": {
+        "wrong_location": true,
+        "spawned_by_office": true,
+        "unsigned_binary": true,
+        "suspicious_domain": true,
+        "process_injection": true
+      }
+    }
+  },
+  "comprehensive_incident": {
+    "alert_id": "INC-2024-999-APT",
+    "incident_title": "Advanced Persistent Threat - Multi-Stage Attack",
+    "incident_opened": "2024-11-23T08:00:00Z",
+    "incident_status": "active",
+    "severity": "critical",
+    "affected_systems_count": 15,
+    "affected_users_count": 3,
+    "estimated_impact": "Critical - Data breach, ransomware, full domain compromise",
+    "attack_chain": [
+      {
+        "stage": 1,
+        "technique": "Initial Access - Phishing",
+        "timestamp": "2024-11-23T08:00:00Z",
+        "description": "Spear phishing email with malicious attachment",
+        "alert_id": "ALT-2024-EMAIL-001",
+        "details": {
+          "recipient": "admin@company.com",
+          "sender": "finance@trusted-partner-fake.com",
+          "subject": "URGENT: Q4 Financial Report - Review Required",
+          "attachment": "Q4_Financial_Report.pdf.exe",
+          "attachment_hash": "275a021bbfb6489e54d471899f7db9d1663fc695ec2fe2a2c4538aabf651fd0f"
+        }
+      },
+      {
+        "stage": 2,
+        "technique": "Credential Access - Phishing",
+        "timestamp": "2024-11-23T08:15:00Z",
+        "description": "User clicked link, redirected to fake login page",
+        "alert_id": "ALT-2024-PHISH-001",
+        "details": {
+          "phishing_domain": "company-login-portal-secure.xyz",
+          "phishing_ip": "192.0.2.50",
+          "credentials_harvested": {
+            "username": "admin@company.com",
+            "password_captured": true
+          },
+          "victim_ip": "10.0.10.100",
+          "victim_location": "London, GB"
+        }
+      },
+      {
+        "stage": 3,
+        "technique": "Initial Access - Valid Accounts",
+        "timestamp": "2024-11-23T08:20:00Z",
+        "description": "Attacker logged in with stolen credentials from London",
+        "alert_id": "ALT-2024-AUTH-002",
+        "details": {
+          "username": "admin@company.com",
+          "source_ip": "93.115.92.100",
+          "country": "RO",
+          "city": "Bucharest",
+          "authentication_method": "NTLM",
+          "success": true,
+          "accessed_systems": ["mail-server", "vpn-gateway"]
+        }
+      },
+      {
+        "stage": 4,
+        "technique": "Defense Evasion - Impossible Travel",
+        "timestamp": "2024-11-23T09:30:00Z",
+        "description": "Second login from Tokyo - Impossible travel detected (Romania to Japan in 1.17 hours)",
+        "alert_id": "ALT-2024-IT-002",
+        "details": {
+          "username": "admin@company.com",
+          "first_login": {
+            "timestamp": "2024-11-23T08:20:00Z",
+            "ip": "93.115.92.100",
+            "country": "RO",
+            "city": "Bucharest"
+          },
+          "second_login": {
+            "timestamp": "2024-11-23T09:30:00Z",
+            "ip": "103.79.141.100",
+            "country": "JP",
+            "city": "Tokyo"
+          },
+          "distance_km": 8847,
+          "time_hours": 1.17,
+          "required_speed_kmh": 7562,
+          "impossible": true
+        }
+      },
+      {
+        "stage": 5,
+        "technique": "Execution - Malware Deployment",
+        "timestamp": "2024-11-23T09:45:00Z",
+        "description": "Ransomware deployed via email attachment",
+        "alert_id": "ALT-2024-MAL-002",
+        "details": {
+          "file_name": "Q4_Financial_Report.pdf.exe",
+          "file_hash": "275a021bbfb6489e54d471899f7db9d1663fc695ec2fe2a2c4538aabf651fd0f",
+          "malware_family": "LockBit 3.0",
+          "execution_host": "DESKTOP-FIN-05",
+          "execution_user": "admin@company.com",
+          "parent_process": "outlook.exe"
+        }
+      },
+      {
+        "stage": 6,
+        "technique": "Privilege Escalation - Exploit",
+        "timestamp": "2024-11-23T10:00:00Z",
+        "description": "Exploited CVE-2024-38063 to gain SYSTEM privileges",
+        "alert_id": "ALT-2024-PRIV-002",
+        "details": {
+          "exploit_cve": "CVE-2024-38063",
+          "vulnerability": "Windows TCP/IP RCE",
+          "original_privileges": "standard_user",
+          "escalated_privileges": "SYSTEM",
+          "exploit_process": "powershell.exe",
+          "host": "DESKTOP-FIN-05"
+        }
+      },
+      {
+        "stage": 7,
+        "technique": "Command and Control - C2 Communication",
+        "timestamp": "2024-11-23T10:15:00Z",
+        "description": "Established connection to command and control server",
+        "alert_id": "ALT-2024-NET-002",
+        "details": {
+          "c2_ip": "45.142.212.100",
+          "c2_domain": "update-services-microsoft.com",
+          "c2_port": 443,
+          "protocol": "HTTPS",
+          "beacon_interval_seconds": 60,
+          "c2_framework": "Cobalt Strike",
+          "source_host": "DESKTOP-FIN-05"
+        }
+      },
+      {
+        "stage": 8,
+        "technique": "Lateral Movement - Pass-the-Hash",
+        "timestamp": "2024-11-23T10:30:00Z",
+        "description": "Moved laterally using stolen credentials",
+        "alert_id": "ALT-2024-LAT-001",
+        "details": {
+          "technique": "Pass-the-Hash",
+          "source_host": "DESKTOP-FIN-05",
+          "compromised_hosts": [
+            "file-server-01",
+            "database-server-01",
+            "exchange-server",
+            "domain-controller-01"
+          ],
+          "tools_used": ["mimikatz.exe", "psexec.exe"],
+          "credentials_dumped": 47
+        }
+      },
+      {
+        "stage": 9,
+        "technique": "Collection - Data Staging",
+        "timestamp": "2024-11-23T11:00:00Z",
+        "description": "Collected and staged sensitive data for exfiltration",
+        "alert_id": "ALT-2024-COLL-001",
+        "details": {
+          "staging_location": "C:\\ProgramData\\Microsoft\\Windows\\Caches\\",
+          "compressed_archive": "system_logs.zip",
+          "archive_size_gb": 250,
+          "files_collected": 15234,
+          "data_types": ["SQL databases", "Excel files", "PDFs", "Documents"],
+          "contains_pii": true,
+          "contains_financial_data": true
+        }
+      },
+      {
+        "stage": 10,
+        "technique": "Impact - Data Encrypted for Impact",
+        "timestamp": "2024-11-23T11:15:00Z",
+        "description": "Mass file encryption across network shares",
+        "alert_id": "ALT-2024-IMPACT-001",
+        "details": {
+          "encrypted_shares": [
+            "\\\\file-server-01\\Finance",
+            "\\\\file-server-01\\HR",
+            "\\\\file-server-01\\Engineering",
+            "\\\\file-server-01\\Executive"
+          ],
+          "files_encrypted": 487293,
+          "total_size_gb": 5000,
+          "ransom_note": "README_DECRYPT_YOUR_FILES.txt",
+          "ransom_amount_btc": 50,
+          "ransom_amount_usd": 3500000,
+          "encryption_algorithm": "AES-256 + RSA-4096"
+        }
+      },
+      {
+        "stage": 11,
+        "technique": "Exfiltration - Over C2 Channel",
+        "timestamp": "2024-11-23T11:30:00Z",
+        "description": "Exfiltrated 250GB of sensitive data",
+        "alert_id": "ALT-2024-EXFIL-002",
+        "details": {
+          "exfil_destination_ip": "185.220.101.50",
+          "exfil_destination_domain": "cloud-backup-services.xyz",
+          "exfil_size_gb": 250,
+          "exfil_duration_minutes": 45,
+          "transfer_rate_mbps": 75,
+          "data_types_exfiltrated": [
+            "Customer database (1.5M records)",
+            "Financial records (250K records)",
+            "Employee data (15K records)",
+            "Trade secrets (3,400 documents)",
+            "Source code (1.2GB)"
+          ]
+        }
+      },
+      {
+        "stage": 12,
+        "technique": "Persistence - Backdoor",
+        "timestamp": "2024-11-23T12:00:00Z",
+        "description": "Planted backdoor for persistent access",
+        "alert_id": "ALT-2024-PERS-001",
+        "details": {
+          "backdoor_file": "WindowsUpdateService.exe",
+          "backdoor_location": "C:\\Windows\\System32\\",
+          "backdoor_hash": "def789abc456ghi123jkl456mno789pqr012stu345vwx678yza901bcd234",
+          "persistence_method": "Windows Service",
+          "service_name": "Windows Update Helper Service",
+          "connects_to": "45.142.212.100:8443",
+          "installed_on_hosts": [
+            "domain-controller-01",
+            "exchange-server",
+            "file-server-01"
+          ]
+        }
+      }
+    ],
+    "indicators_of_compromise": {
+      "ip_addresses": [
+        {"ip": "192.0.2.50", "type": "phishing_server", "threat_level": "high"},
+        {"ip": "93.115.92.100", "type": "attacker_source", "country": "RO", "threat_level": "high"},
+        {"ip": "103.79.141.100", "type": "attacker_source", "country": "JP", "threat_level": "high"},
+        {"ip": "45.142.212.100", "type": "c2_server", "country": "RU", "threat_level": "critical"},
+        {"ip": "185.220.101.50", "type": "exfiltration_destination", "country": "BG", "threat_level": "critical"},
+        {"ip": "198.51.100.50", "type": "secondary_c2", "threat_level": "high"}
+      ],
+      "domains": [
+        {"domain": "company-login-portal-secure.xyz", "type": "phishing", "threat_level": "high"},
+        {"domain": "trusted-partner-fake.com", "type": "phishing", "threat_level": "high"},
+        {"domain": "update-services-microsoft.com", "type": "c2_domain", "threat_level": "critical"},
+        {"domain": "cloud-backup-services.xyz", "type": "exfil_domain", "threat_level": "critical"},
+        {"domain": "update-microsoft-services.com", "type": "c2_domain", "threat_level": "critical"}
+      ],
+      "file_hashes": [
+        {
+          "hash": "275a021bbfb6489e54d471899f7db9d1663fc695ec2fe2a2c4538aabf651fd0f",
+          "type": "ransomware",
+          "file_name": "Q4_Financial_Report.pdf.exe",
+          "threat_level": "critical"
+        },
+        {
+          "hash": "def789abc456ghi123jkl456mno789pqr012stu345vwx678yza901bcd234",
+          "type": "backdoor",
+          "file_name": "WindowsUpdateService.exe",
+          "threat_level": "critical"
+        },
+        {
+          "hash": "abc123def456789ghi012jkl345mno678pqr901stu234vwx567yza890bcd",
+          "type": "info_stealer",
+          "file_name": "svchost.exe",
+          "threat_level": "high"
+        }
+      ],
+      "user_accounts": [
+        {"account": "admin@company.com", "status": "compromised", "privilege_level": "domain_admin"},
+        {"account": "backup_admin", "status": "malicious_creation", "privilege_level": "domain_admin"}
+      ]
+    },
+    "threat_intelligence": {
+      "attributed_group": "APT29 (Cozy Bear)",
+      "attack_framework": "MITRE ATT&CK",
+      "ttps": [
+        "T1566.001 - Phishing: Spearphishing Attachment",
+        "T1078 - Valid Accounts",
+        "T1110 - Brute Force",
+        "T1068 - Exploitation for Privilege Escalation",
+        "T1071 - Application Layer Protocol",
+        "T1021.002 - Remote Services: SMB/Windows Admin Shares",
+        "T1003.001 - OS Credential Dumping: LSASS Memory",
+        "T1486 - Data Encrypted for Impact",
+        "T1041 - Exfiltration Over C2 Channel",
+        "T1547.001 - Boot or Logon Autostart Execution: Registry Run Keys"
+      ],
+      "confidence_level": "high"
+    },
+    "impact_assessment": {
+      "systems_compromised": 15,
+      "users_compromised": 3,
+      "data_encrypted_gb": 5000,
+      "data_exfiltrated_gb": 250,
+      "estimated_downtime_hours": 72,
+      "estimated_financial_loss_usd": 15000000,
+      "pii_records_exposed": 1500000,
+      "regulatory_impact": ["GDPR violation", "PCI-DSS breach", "HIPAA violation"],
+      "ransom_demand_usd": 3500000
+    },
+    "response_actions_taken": [
+      "Isolated affected systems from network",
+      "Disabled compromised user accounts",
+      "Blocked IOC IP addresses at firewall",
+      "Initiated forensic investigation",
+      "Engaged incident response team",
+      "Notified legal and compliance teams",
+      "Prepared breach notification",
+      "Contacted law enforcement (FBI Cyber Division)"
+    ],
+    "response_status": {
+      "containment": "in_progress",
+      "eradication": "not_started",
+      "recovery": "not_started",
+      "lessons_learned": "pending"
+    }
+  },
+  "incidents": [
+    {
+      "id": "INC-2024-001",
+      "details": {
+        "attack_timeline": [
+          {
+            "time": "08:00 UTC",
+            "event": "Initial phishing email received by admin@company.com",
+            "iocs": ["phishing-domain.com", "192.0.2.50"]
+          },
+          {
+            "time": "08:15 UTC", 
+            "event": "User clicked link, credentials stolen",
+            "alert_type": "authentication_anomaly",
+            "failed_attempts": 3,
+            "successful_login": true
+          },
+          {
+            "time": "08:20 UTC",
+            "event": "Login from London, UK",
+            "username": "admin@company.com",
+            "source_country": "GB",
+            "source_city": "London",
+            "source_ip": "93.115.92.100"
+          },
+          {
+            "time": "09:30 UTC",
+            "event": "Login from Tokyo, Japan (1.17 hours later - IMPOSSIBLE TRAVEL)",
+            "username": "admin@company.com", 
+            "target_country": "JP",
+            "target_city": "Tokyo",
+            "target_ip": "103.79.141.100",
+            "time_diff_hours": 1.17,
+            "alert_type": "authentication_anomaly"
+          },
+          {
+            "time": "09:45 UTC",
+            "event": "Malware downloaded and executed",
+            "file_name": "system_update.exe",
+            "malware_hash": "275a021bbfb6489e54d471899f7db9d1663fc695ec2fe2a2c4538aabf651fd0f",
+            "malware_type": "ransomware",
+            "alert_type": "malware_detection",
+            "detection_method": "EDR"
+          },
+          {
+            "time": "10:00 UTC",
+            "event": "Suspicious process spawned - privilege escalation attempt",
+            "process": "powershell.exe -encodedCommand <base64_exploit>",
+            "parent_process": "winword.exe",
+            "user": "admin@company.com",
+            "privileges_before": "standard_user",
+            "privileges_after": "domain_admin",
+            "alert_type": "privilege_escalation",
+            "exploit_cve": "CVE-2024-99999"
+          },
+          {
+            "time": "10:15 UTC",
+            "event": "Connection to known C2 server",
+            "destination_ip": "45.142.212.100",
+            "destination_domain": "evil-c2-command.com",
+            "protocol": "HTTPS",
+            "port": 443,
+            "alert_type": "network_intrusion"
+          },
+          {
+            "time": "10:30 UTC",
+            "event": "Lateral movement detected",
+            "source_host": "workstation-admin-01",
+            "target_hosts": ["database-server-01", "file-server-02", "domain-controller"],
+            "technique": "pass-the-hash",
+            "alert_type": "network_intrusion"
+          },
+          {
+            "time": "11:00 UTC",
+            "event": "Mass file encryption started",
+            "affected_shares": ["\\\\file-server\\finance", "\\\\file-server\\hr", "\\\\file-server\\engineering"],
+            "ransom_note": "YOUR_FILES_ARE_ENCRYPTED.txt",
+            "alert_type": "malware_detection"
+          },
+          {
+            "time": "11:15 UTC",
+            "event": "Data exfiltration detected",
+            "source": "database-server-01",
+            "destination_ip": "185.220.101.50",
+            "destination_domain": "exfil-data-storage.xyz",
+            "data_size_gb": 250,
+            "file_types": ["sql", "xlsx", "pdf", "docx"],
+            "alert_type": "data_exfiltration",
+            "sensitive_files": [
+              "customer_database.sql",
+              "employee_records.xlsx", 
+              "financial_statements_2024.pdf",
+              "trade_secrets.docx"
+            ]
+          },
+          {
+            "time": "11:30 UTC",
+            "event": "Backdoor planted for persistence",
+            "file_name": "svchost32.exe",
+            "location": "C:\\Windows\\System32\\",
+            "hash": "abc123def456789",
+            "connects_to": "45.142.212.100",
+            "alert_type": "suspicious_process"
+          }
+        ],
+        "all_iocs": {
+          "ips_to_check": [
+            "93.115.92.100",
+            "103.79.141.100",
+            "45.142.212.100",
+            "192.0.2.50",
+            "185.220.101.50"
+          ],
+          "domains_to_check": [
+            "phishing-domain.com",
+            "evil-c2-command.com",
+            "exfil-data-storage.xyz"
+          ],
+          "hashes_to_check": [
+            "275a021bbfb6489e54d471899f7db9d1663fc695ec2fe2a2c4538aabf651fd0f",
+            "abc123def456789"
+          ],
+          "travel_to_check": {
+            "username": "admin@company.com",
+            "source_country": "GB",
+            "target_country": "JP", 
+            "time_diff_hours": 1.17
+          },
+          "alerts_to_analyze": [
+            {
+              "type": "authentication_anomaly",
+              "data": {
+                "username": "admin@company.com",
+                "failed_attempts": 3,
+                "source_ips": ["192.0.2.50", "93.115.92.100", "103.79.141.100"],
+                "success_country": "JP",
+                "timestamp": "2024-11-23T09:30:00Z"
+              }
+            },
+            {
+              "type": "malware_detection",
+              "data": {
+                "file_name": "system_update.exe",
+                "hash": "275a021bbfb6489e54d471899f7db9d1663fc695ec2fe2a2c4538aabf651fd0f",
+                "process": "system_update.exe",
+                "user": "admin@company.com",
+                "detection_source": "EDR",
+                "behavior": "file_encryption"
+              }
+            },
+            {
+              "type": "privilege_escalation",
+              "data": {
+                "user": "admin@company.com",
+                "original_role": "standard_user",
+                "new_role": "domain_admin",
+                "method": "exploit",
+                "process": "powershell.exe"
+              }
+            },
+            {
+              "type": "network_intrusion",
+              "data": {
+                "source_ip": "internal",
+                "destination_ip": "45.142.212.100",
+                "destination_port": 443,
+                "protocol": "HTTPS",
+                "bytes_transferred": 50000000,
+                "suspicious_pattern": "beaconing"
+              }
+            },
+            {
+              "type": "data_exfiltration",
+              "data": {
+                "source_host": "database-server-01",
+                "destination_ip": "185.220.101.50",
+                "data_size": "250GB",
+                "file_count": 15000,
+                "time_of_day": "off_hours",
+                "user": "admin@company.com"
+              }
+            },
+            {
+              "type": "suspicious_process",
+              "data": {
+                "process_name": "svchost32.exe",
+                "process_path": "C:\\Windows\\System32\\svchost32.exe",
+                "parent_process": "services.exe",
+                "command_line": "-k netsvcs",
+                "network_connections": ["45.142.212.100:443"],
+                "file_hash": "abc123def456789"
+              }
+            }
+          ]
+        },
+        "threat_assessment_indicators": {
+          "authentication_failures": 3,
+          "malware_detections": 2,
+          "privilege_escalations": 1,
+          "data_exfiltration_attempts": 1,
+          "c2_communications": 2,
+          "affected_systems": 15,
+          "data_encrypted_gb": 500,
+          "data_exfiltrated_gb": 250
+        }
+      },
+      "expected_analysis": "Should trigger ALL council members: TravelDetective (impossible travel GB->JP), ThreatIntelSpecialist (check 5 IPs, 3 domains, 2 hashes), AlertTriager (6 alert types), ThreatAnalyst (aggregate all indicators). Final assessment: CRITICAL APT attack requiring immediate incident response."
+    },
+    {
+      "id": "INC-2024-001",
+      "title": "Impossible Travel - Executive Account",
+      "severity": "critical",
+      "description": "CEO account logged in from New York at 9:00 AM, then Tokyo at 10:30 AM same day",
+      "details": {
+        "username": "ceo@company.com",
+        "source_country": "US",
+        "source_city": "New York",
+        "target_country": "JP",
+        "target_city": "Tokyo",
+        "time_diff_hours": 1.5,
+        "actions_taken": [
+          "Accessed financial reports",
+          "Modified wire transfer settings",
+          "Downloaded customer database"
+        ]
+      },
+      "expected_analysis": "Should detect impossible travel, flag high-risk due to executive account and sensitive actions"
+    },
+    {
+      "id": "INC-2024-002",
+      "title": "Malicious IP with Ransomware",
+      "severity": "critical",
+      "description": "Ransomware detected from known malicious IP, active C2 communication",
+      "details": {
+        "source_ip": "45.142.212.100",
+        "malware_hash": "275a021bbfb6489e54d471899f7db9d1663fc695ec2fe2a2c4538aabf651fd0f",
+        "affected_host": "workstation-finance-05",
+        "file_name": "invoice_2024.pdf.exe",
+        "user": "jane.smith@company.com",
+        "domains_contacted": [
+          "evil-c2-server.com",
+          "malware-distribution.net"
+        ]
+      },
+      "expected_analysis": "High severity ransomware, known malicious IP and domain, immediate containment needed"
+    },
+    {
+      "id": "INC-2024-003",
+      "title": "Brute Force Attack from Multiple IPs",
+      "severity": "high",
+      "description": "Failed login attempts from 50 different IPs in China, then successful login",
+      "details": {
+        "username": "admin@company.com",
+        "failed_attempts": 247,
+        "source_countries": ["CN", "RU", "KP"],
+        "attack_duration_hours": 3,
+        "successful_login_ip": "203.0.113.42",
+        "successful_login_country": "CN",
+        "actions_after_login": [
+          "Created new admin account",
+          "Modified firewall rules",
+          "Accessed password vault"
+        ]
+      },
+      "expected_analysis": "Successful credential stuffing attack, privilege escalation detected, account compromise confirmed"
+    },
+    {
+      "id": "INC-2024-004",
+      "title": "Data Exfiltration to External Storage",
+      "severity": "high",
+      "description": "Large data transfer to suspicious cloud storage service",
+      "details": {
+        "username": "contractor.john@company.com",
+        "source_host": "engineering-server-12",
+        "destination_ip": "185.220.101.50",
+        "destination_domain": "suspicious-cloud-storage.xyz",
+        "data_transferred_gb": 150,
+        "file_types": ["sql", "xlsx", "pdf", "docx"],
+        "transfer_time": "02:30 AM",
+        "files_accessed": [
+          "customer_database.sql",
+          "financial_records_2024.xlsx",
+          "proprietary_algorithms.pdf"
+        ]
+      },
+      "expected_analysis": "Insider threat or compromised account, sensitive data exfiltration during off-hours"
+    },
+    {
+      "id": "INC-2024-005",
+      "title": "Multiple IoCs - Coordinated Attack",
+      "severity": "critical",
+      "description": "Coordinated attack with impossible travel, malware, and data theft",
+      "details": {
+        "timeline": [
+          {
+            "time": "08:00",
+            "event": "User alice@company.com login from London, UK"
+          },
+          {
+            "time": "09:15",
+            "event": "Same user login from Beijing, China (1.25 hours later)"
+          },
+          {
+            "time": "09:30",
+            "event": "Malware detected: backdoor.exe with hash abc123def456"
+          },
+          {
+            "time": "10:00",
+            "event": "Connection to known C2 server: 198.51.100.200"
+          },
+          {
+            "time": "10:30",
+            "event": "Large file upload to external IP: 50 GB to 192.0.2.150"
+          }
+        ],
+        "affected_user": "alice@company.com",
+        "source_ips": ["93.115.92.100", "103.79.141.100", "198.51.100.200"],
+        "malware_hashes": ["abc123def456"],
+        "c2_domains": ["evil-command-control.com"],
+        "data_stolen": "Customer PII, financial records, source code"
+      },
+      "expected_analysis": "Advanced persistent threat (APT), account takeover, malware deployment, data exfiltration - full incident response required"
+    },
+    {
+      "id": "INC-2024-006",
+      "title": "Privilege Escalation via Exploit",
+      "severity": "high",
+      "description": "Standard user gained admin privileges through suspicious process",
+      "details": {
+        "username": "bob.jones@company.com",
+        "original_privileges": "standard_user",
+        "new_privileges": "domain_admin",
+        "suspicious_process": "powershell.exe -encodedCommand <base64>",
+        "exploit_used": "CVE-2024-12345",
+        "actions_after_escalation": [
+          "Disabled antivirus",
+          "Created backdoor user account",
+          "Modified security policies",
+          "Accessed sensitive file shares"
+        ],
+        "detection_source": "EDR Alert"
+      },
+      "expected_analysis": "Exploit-based privilege escalation, potential ransomware precursor, immediate containment needed"
+    },
+    {
+      "id": "INC-2024-007",
+      "title": "Phishing Campaign with Credential Theft",
+      "severity": "medium",
+      "description": "Multiple users clicked phishing link, credentials harvested",
+      "details": {
+        "affected_users": [
+          "user1@company.com",
+          "user2@company.com",
+          "user3@company.com"
+        ],
+        "phishing_domain": "company-login-portal.xyz",
+        "phishing_ip": "192.0.2.99",
+        "email_subject": "Urgent: Password Reset Required",
+        "sender": "it-support@company-fake.com",
+        "credentials_compromised": 12,
+        "subsequent_logins": [
+          {
+            "user": "user1@company.com",
+            "ip": "185.220.101.25",
+            "country": "RU"
+          }
+        ]
+      },
+      "expected_analysis": "Successful phishing attack, credential theft confirmed, unauthorized access from Russia"
+    },
+    {
+      "id": "INC-2024-008",
+      "title": "Cryptocurrency Mining Malware",
+      "severity": "medium",
+      "description": "Unauthorized cryptocurrency miner detected on production servers",
+      "details": {
+        "affected_hosts": [
+          "web-server-01",
+          "web-server-02",
+          "web-server-03"
+        ],
+        "malware_hash": "44d88612fea8a8f36de82e1278abb02f",
+        "mining_pool": "pool.minero.cc:4444",
+        "cpu_usage": "98%",
+        "network_traffic": "500 GB/day outbound",
+        "installation_method": "Vulnerable web application (CVE-2024-54321)",
+        "wallet_address": "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa"
+      },
+      "expected_analysis": "Cryptojacking via web vulnerability, performance impact, but lower severity than data theft"
+    },
+    {
+      "id": "INC-2024-009",
+      "title": "Lateral Movement After Initial Breach",
+      "severity": "critical",
+      "description": "Attacker moving through network after initial compromise",
+      "details": {
+        "initial_compromise": "web-dmz-server-01",
+        "lateral_movement_path": [
+          "web-dmz-server-01",
+          "internal-app-server-05",
+          "database-server-primary",
+          "domain-controller-01"
+        ],
+        "techniques_used": [
+          "Pass-the-Hash",
+          "WMI remote execution",
+          "SMB exploitation",
+          "Credential dumping"
+        ],
+        "tools_detected": [
+          "mimikatz.exe",
+          "psexec.exe",
+          "sharphound.exe"
+        ],
+        "duration": "72 hours",
+        "current_location": "domain-controller-01"
+      },
+      "expected_analysis": "Active adversary in network, domain admin compromise likely, full network forensics required"
+    },
+    {
+      "id": "INC-2024-010",
+      "title": "Supply Chain Attack via Third-Party Software",
+      "severity": "critical",
+      "description": "Compromised software update delivered malicious payload",
+      "details": {
+        "software_vendor": "TrustedSoftware Inc",
+        "affected_product": "DataSync Pro v3.2",
+        "update_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "legitimate_hash": "different_hash_expected",
+        "payload_delivered": "backdoor with keylogger",
+        "affected_systems": 250,
+        "deployment_method": "Automatic update",
+        "c2_communications": "update-server-legit-looking.com",
+        "discovery_method": "Hash mismatch during routine audit"
+      },
+      "expected_analysis": "Supply chain compromise, widespread deployment, sophisticated attack requiring vendor coordination"
+    }
+  ],
+  "quick_checks": {
+    "travel_checks": [
+      {
+        "description": "Normal business travel - London to Paris",
+        "username": "sales.rep@company.com",
+        "source_country": "GB",
+        "target_country": "FR",
+        "time_diff_hours": 5,
+        "expected": "LOW_RISK - Feasible by train/plane"
+      },
+      {
+        "description": "VPN usage - US to Japan instantly",
+        "username": "remote.worker@company.com",
+        "source_country": "US",
+        "target_country": "JP",
+        "time_diff_hours": 0.1,
+        "expected": "SUSPICIOUS - Likely VPN, investigate"
+      },
+      {
+        "description": "Impossible travel - Australia to Brazil in 2 hours",
+        "username": "victim@company.com",
+        "source_country": "AU",
+        "target_country": "BR",
+        "time_diff_hours": 2,
+        "expected": "IMPOSSIBLE_TRAVEL - Account compromise"
+      }
+    ],
+    "ip_checks": [
+      {
+        "description": "Google DNS (clean)",
+        "ip": "8.8.8.8",
+        "expected": "CLEAN - Known Google infrastructure"
+      },
+      {
+        "description": "Tor exit node",
+        "ip": "185.220.101.1",
+        "expected": "SUSPICIOUS - Known Tor exit node"
+      },
+      {
+        "description": "Known botnet C2",
+        "ip": "45.142.212.100",
+        "expected": "MALICIOUS - Active botnet controller"
+      }
+    ],
+    "hash_checks": [
+      {
+        "description": "Legitimate Windows file",
+        "hash": "44d88612fea8a8f36de82e1278abb02f",
+        "expected": "CLEAN or UNKNOWN"
+      },
+      {
+        "description": "Known ransomware",
+        "hash": "275a021bbfb6489e54d471899f7db9d1663fc695ec2fe2a2c4538aabf651fd0f",
+        "expected": "MALICIOUS - Ransomware detected"
+      }
+    ],
+    "domain_checks": [
+      {
+        "description": "Legitimate site",
+        "domain": "google.com",
+        "expected": "CLEAN"
+      },
+      {
+        "description": "Phishing domain",
+        "domain": "g00gle-login.com",
+        "expected": "MALICIOUS - Phishing"
+      },
+      {
+        "description": "C2 domain",
+        "domain": "evil-c2-server.com",
+        "expected": "MALICIOUS - Command & Control"
+      }
+    ]
+  }
+}

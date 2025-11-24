@@ -1,0 +1,21 @@
+# MCP Server Dependencies
+mcp
+pydantic
+
+# Data Processing
+pandas
+numpy
+pyyaml
+
+# Machine Learning
+tensorflow
+scikit-learn
+
+# Utilities
+python-dateutil
+geopy
+requests
+python-dotenv
+
+# AG2 (AutoGen) Framework
+pyautogen

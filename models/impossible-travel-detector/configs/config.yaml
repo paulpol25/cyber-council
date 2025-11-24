@@ -1,0 +1,93 @@
+# Configuration for Impossible Travel Detector
+
+# Data paths
+data:
+  raw_data_path: "../data/raw/impossible_travel_training_dataset.csv"
+  processed_data_path: "../data/processed/processed_data.pkl"
+  train_split_path: "../data/splits/train.csv"
+  val_split_path: "../data/splits/val.csv"
+  test_split_path: "../data/splits/test.csv"
+
+# Data split ratios
+split:
+  train_ratio: 0.7
+  val_ratio: 0.15
+  test_ratio: 0.15
+  random_seed: 42
+
+# Feature engineering
+features:
+  numerical_features:
+    - distance_km
+    - time_diff_hours
+    - travel_speed_kmh
+    - latitude
+    - longitude
+    - prev_latitude
+    - prev_longitude
+  
+  categorical_features:
+    - event_type
+    - country
+    - prev_country
+  
+  # Derived features to create
+  create_features:
+    - speed_log
+    - distance_log
+    - time_diff_log
+    - is_same_country
+    - is_first_login
+    - hour_of_day
+    - day_of_week
+
+# Model architecture
+model:
+  input_dim: null  # Will be set dynamically based on features
+  hidden_layers: [128, 64, 32]
+  dropout_rate: 0.3
+  activation: "relu"
+  output_activation: "sigmoid"
+  batch_norm: true
+
+# Training parameters
+training:
+  batch_size: 32
+  epochs: 100
+  learning_rate: 0.001
+  early_stopping_patience: 15
+  reduce_lr_patience: 7
+  reduce_lr_factor: 0.5
+  min_lr: 0.00001
+  optimizer: "adam"
+  loss: "binary_crossentropy"
+  class_weight: "auto"  # Will calculate based on class imbalance
+
+# Model checkpointing
+checkpoint:
+  save_dir: "models/checkpoints"
+  save_best_only: true
+  monitor: "val_loss"
+  mode: "min"
+
+# Final model saving
+model_save:
+  save_dir: "models/saved_models"
+  model_name: "impossible_travel_detector"
+
+# Evaluation
+evaluation:
+  metrics:
+    - accuracy
+    - precision
+    - recall
+    - f1_score
+    - auc_roc
+    - confusion_matrix
+  threshold: 0.5
+
+# Logging
+logging:
+  log_dir: "logs"
+  tensorboard: true
+  verbose: 1
