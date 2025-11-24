@@ -73,9 +73,9 @@ llm-council/
 # Install dependencies
 python -m venv cyber-council
 
--- Activate the environment -- 
+# Activate the environment 
 Linux: source cyber-council/bin/activate
-Windows: cybber-council/Scripts/Activate
+Windows: cyber-council/Scripts/Activate
 
 pip install -r mcp/requirements.txt
 pip install -r council/requirements.txt
