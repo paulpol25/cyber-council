@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "cybersec-council": {
+      "command": "python",
+      "args": [
+        "-m",
+        "mcp.server"
+      ],
+      "cwd": "--PATH-TO-MCP-DIRECTORY--",
+      "env": {
+        "PYTHONPATH": "--PATH-TO-PYTHONPATH"
+      }
+    }
+  }
+}
