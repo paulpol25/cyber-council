@@ -233,7 +233,7 @@ Use MCP tools with Claude Desktop or other MCP clients for natural language secu
         │ Delegates tasks
         │
     ┌───┴────────────────────────────────────────────────┐
-    │                                                     │
+    │                  │                  │              │
     ▼                  ▼                  ▼              ▼
 ┌──────────┐    ┌──────────┐    ┌──────────┐    ┌──────────┐   
 │  Travel  │    │  Threat  │    │  Alert   │    │  Threat  │
@@ -257,7 +257,7 @@ Use MCP tools with Claude Desktop or other MCP clients for natural language secu
 │impossible_   │  │virustotal_   │  │abuseipdb_    │
 │travel.py     │  │check.py      │  │check.py      │
 │              │  │              │  │              │
-│• ML model    │  │• IP check    │  │• IP reputation│
+│• ML model    │  │• IP check    │  │• IP reput    │
 │• Geo calc    │  │• Hash check  │  │• Abuse score │
 └──────────────┘  └──────────────┘  └──────────────┘
 ```
