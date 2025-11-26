@@ -232,7 +232,7 @@ Use MCP tools with Claude Desktop or other MCP clients for natural language secu
         │
         │ Delegates tasks
         │
-    ┌───┴────────────────────────────────────────────────┐
+    ┌───┴──────────────┬──────────────────┬──────────────┐
     │                  │                  │              │
     ▼                  ▼                  ▼              ▼
 ┌──────────┐    ┌──────────┐    ┌──────────┐    ┌──────────┐   
@@ -243,7 +243,7 @@ Use MCP tools with Claude Desktop or other MCP clients for natural language secu
      │ Uses MCP      │ Uses MCP      │ Uses MCP      │ Uses MCP
      │ Tools         │ Tools         │ Tools         │ Tools
      │               │               │               │
-     └───────────────┴───────────────┴───────────────┘
+     └───────────────┴────┬──────────┴───────────────┘
                           │
                           ▼
             ┌─────────────────────────┐
@@ -253,13 +253,13 @@ Use MCP tools with Claude Desktop or other MCP clients for natural language secu
         ┌────────────────┼────────────────┐
         │                │                │
         ▼                ▼                ▼
-┌──────────────┐  ┌──────────────┐  ┌──────────────┐
-│impossible_   │  │virustotal_   │  │abuseipdb_    │
-│travel.py     │  │check.py      │  │check.py      │
-│              │  │              │  │              │
-│• ML model    │  │• IP check    │  │• IP reput    │
-│• Geo calc    │  │• Hash check  │  │• Abuse score │
-└──────────────┘  └──────────────┘  └──────────────┘
+┌──────────────┐  ┌──────────────┐  ┌────────────────┐
+│impossible_   │  │virustotal_   │  │abuseipdb_      │
+│travel.py     │  │check.py      │  │check.py        │
+│              │  │              │  │                │
+│• ML model    │  │• IP check    │  │• IP reputation │
+│• Geo calc    │  │• Hash check  │  │• Abuse score   │
+└──────────────┘  └──────────────┘  └────────────────┘
 ```
 
 ### LLM Integration
